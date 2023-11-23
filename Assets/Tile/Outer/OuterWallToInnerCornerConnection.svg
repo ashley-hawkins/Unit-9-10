@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="16.871996"
-     inkscape:cx="1.57065"
+     inkscape:cx="0.32598396"
      inkscape:cy="13.335707"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -43,7 +43,7 @@
        id="g16507"
        transform="translate(-2.3001432e-4,-2.3001432e-4)">
       <path
-         style="fill:none;stroke:#2121ff;stroke-width:1.99954;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#0000ff;stroke-width:1.99954;stroke-dasharray:none;stroke-opacity:1"
          d="M 7,16 C 7,12 12,7 16,7"
          id="path16382"
          sodipodi:nodetypes="cc" />
@@ -51,7 +51,7 @@
          id="g9110"
          transform="matrix(3.7795277,0,0,3.7795277,-15.99977,1.361242e-4)">
         <path
-           style="fill:none;fill-opacity:1;stroke:#2121ff;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
+           style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
            d="M 4.2333333,0.26460834 H 8.4666666"
            id="path5414" />
       </g>

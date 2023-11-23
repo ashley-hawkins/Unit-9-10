@@ -4,17 +4,17 @@
 <svg
    width="16"
    height="16"
-   viewBox="0 0 4.2333332 4.2333333"
+   viewBox="0 0 16 16.000001"
    version="1.1"
-   id="svg9676"
+   id="svg16690"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="drawing01.svg"
+   sodipodi:docname="OuterWallCornerSmall.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
-     id="namedview9678"
+     id="namedview16692"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -24,32 +24,34 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="11.930303"
-     inkscape:cx="29.295149"
-     inkscape:cy="1.6764034"
+     inkscape:zoom="47.721212"
+     inkscape:cx="10.110808"
+     inkscape:cy="14.79426"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g16674" />
   <defs
-     id="defs9673" />
+     id="defs16687" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g9110"
-       transform="translate(-4.2333333,-2.484176e-5)">
+       id="g16674"
+       transform="translate(-2.2982682e-4,-2.2982682e-4)">
       <path
-         style="fill:none;fill-opacity:1;stroke:#2121ff;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
-         d="M 4.2333333,0.26460834 H 8.4666666"
-         id="path5414" />
+         style="fill:none;stroke:#0000ff;stroke-width:1.99954;stroke-dasharray:none;stroke-opacity:1"
+         d="M 9,16 C 9,13 13,9 16,9"
+         id="path16382"
+         sodipodi:nodetypes="cc" />
       <path
-         style="fill:none;fill-opacity:1;stroke:#2121ff;stroke-width:0.529167;stroke-dasharray:none;stroke-opacity:1"
-         d="M 4.2333333,1.8520835 H 8.4666666"
-         id="path5416" />
+         style="fill:none;stroke:#0404ff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         d="M 15,16 C 15,15.6 15.5,15 16,15"
+         id="path16384"
+         sodipodi:nodetypes="cc" />
     </g>
   </g>
 </svg>
