@@ -165,6 +165,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
+*.meta
 *.obj
 *.iobj
 *.pch
@@ -481,3 +482,9 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/unity,visualstudio,visualstudiocode
 .vsconfig
 .utmp
+
+
+# Fixes for conflicts with VS gitignore
+!/Assets/**/*.meta
+!/[Pp]ackages/**
+.vscode
