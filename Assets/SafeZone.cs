@@ -14,7 +14,7 @@ public class SafeZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Screen.safeArea);
+        //print(Screen.safeArea);
         Vector2 anchorMin = Screen.safeArea.position / c.pixelRect.size;
         Vector2 anchorMax = (Screen.safeArea.position + Screen.safeArea.size) / c.pixelRect.size;
         rt.anchorMin = anchorMin;
