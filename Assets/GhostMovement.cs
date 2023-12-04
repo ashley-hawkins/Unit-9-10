@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
 using System;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class GhostMovement : MonoBehaviour
 {
@@ -13,19 +15,46 @@ public class GhostMovement : MonoBehaviour
     Vector2Int previousCell = Vector2Int.one * int.MaxValue;
     Vector2Int velocity;
     Vector2Int nextVelocity = Vector2Int.left;
-    public Vector2Int TargetTile { private get; set; }
+    public Vector2Int TargetTile { get; set; }
     // Start is called before the first frame update
+    public TileBase RTeleporterTile;
+    public TileBase LTeleporterTile;
+
+    public GameObject pacman;
     void Start()
     {
-        TargetTile = new Vector2Int(-14, -22);
     }
 
     // Update is called once per frame
     void Update()
     {
+        var localPreviousCell = previousCell;
         var currentCell = (Vector2Int)tm.WorldToCell(transform.position);
+        var currentCellType = tm.GetTile((Vector3Int)currentCell);
+        if ((Vector2Int)tm.WorldToCell(pacman.transform.position) == currentCell)
+        {
+            SceneManager.LoadScene("Scenes/GameOverScene");
+        }
+
+        previousCell = currentCell;
         var difference = transform.position - tm.layoutGrid.GetCellCenterWorld((Vector3Int)currentCell);
-        if (currentCell != previousCell)
+
+
+        if (currentCellType == RTeleporterTile)
+        {
+            if (velocity == Vector2Int.right)
+            {
+                transform.position -= new Vector3(MazeNavigationLogic.MapWidth + 2, 0);
+            }
+        }
+        else if (currentCellType == LTeleporterTile)
+        {
+            if (velocity == Vector2Int.left)
+            {
+                transform.position += new Vector3(MazeNavigationLogic.MapWidth + 2, 0);
+            }
+        }
+        if (currentCell != localPreviousCell)
         {
             velocity = nextVelocity;
             var nextCell = currentCell + velocity;
@@ -38,7 +67,9 @@ public class GhostMovement : MonoBehaviour
             Func<Vector2Int, float> distanceFromTarget = x => (TargetTile - (nextCell + x)).magnitude;
 
             nextDirections.Remove(-velocity);
-            nextDirections = nextDirections.Where(x => !wallTiles.Contains(tm.GetTile((Vector3Int)x))).OrderBy(distanceFromTarget).ToList();
+            nextDirections = nextDirections.Where(
+                x => !wallTiles.Contains(tm.GetTile((Vector3Int)(nextCell + x)))
+                ).OrderBy(distanceFromTarget).ToList();
             nextVelocity = nextDirections[0];
         }
         if (velocity.x != 0)
@@ -46,7 +77,7 @@ public class GhostMovement : MonoBehaviour
             if (difference.y != 0)
             {
                 var diffMagnitude = Mathf.Abs(difference.y);
-                var travel = -Mathf.Sign(difference.y) * Mathf.Min(Time.deltaTime * 0.1f, diffMagnitude);
+                var travel = -Mathf.Sign(difference.y) * Mathf.Min(Time.deltaTime * 10f, diffMagnitude);
                 transform.position += new Vector3(0, travel);
                 return;
             }
@@ -56,11 +87,11 @@ public class GhostMovement : MonoBehaviour
             if (difference.x != 0)
             {
                 var diffMagnitude = Mathf.Abs(difference.x);
-                var travel = -Mathf.Sign(difference.x) * Mathf.Min(Time.deltaTime * 0.1f, diffMagnitude);
+                var travel = -Mathf.Sign(difference.x) * Mathf.Min(Time.deltaTime * 10f, diffMagnitude);
                 transform.position += new Vector3(travel, 0);
                 return;
             }
         }
-        transform.position += ((Vector3)(Vector3Int)velocity) * Time.deltaTime * 0.1f;
+        transform.position += Vector3.ClampMagnitude(((Vector3)(Vector3Int)velocity) * Time.deltaTime * 10f, 1);
     }
 }

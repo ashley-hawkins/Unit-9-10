@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JoystickDrag : MonoBehaviour, IDraggable
+public class Joystick : MonoBehaviour, IDraggable
 {
     public float Radius = 100;
     public Vector2 Output { get { return output;  } }

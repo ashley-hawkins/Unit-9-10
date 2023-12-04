@@ -17,6 +17,7 @@ public class Draggable : MonoBehaviour, IDraggable
 
     public void BeginTouch(TouchDragManager.DragOptions opts, Touch touch, Vector3 worldPos)
     {
+        if (active) return;
         active = true;
         fingerId = touch.fingerId;
         offset = Quaternion.Inverse(transform.rotation) * (worldPos - transform.position);

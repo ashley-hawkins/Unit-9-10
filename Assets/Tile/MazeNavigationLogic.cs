@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MazeNavigationLogic : MonoBehaviour
 {
-    const int MapWidth = 28;
+    public const int MapWidth = 28;
     public Tilemap tm;
     public TileBase foodTile;
     public TileBase[] wallTiles;
@@ -15,9 +16,13 @@ public class MazeNavigationLogic : MonoBehaviour
     public TileBase LTeleporterTile;
     public GameObject thePacman;
     public Animator theAnim;
-    public JoystickDrag joystick;
+    public Joystick joystick;
+    public bool ScatterMode { get; private set; } = false;
+    public int score = 0;
+    float prevScatterTime = float.MinValue;
+    [HideInInspector]
+    public Vector2Int pacmanVelocity = Vector2Int.left;
     // Start is called before the first frame update
-    Vector2Int pacmanVelocity = Vector2Int.left;
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -29,6 +34,15 @@ public class MazeNavigationLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!ScatterMode && Time.time - prevScatterTime > 30)
+        {
+            ScatterMode = true;
+            prevScatterTime = Time.time;
+        }
+        if (ScatterMode && Time.time - prevScatterTime > 10)
+        {
+            ScatterMode = false;
+        }
         Vector2Int wantedVelocity = Vector2Int.zero;
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -77,7 +91,13 @@ public class MazeNavigationLogic : MonoBehaviour
         var currentCellType = tm.GetTile((Vector3Int)currentCell);
         if (currentCellType == foodTile)
         {
+            score += 1;
+            print("Score: " + score);
             tm.SetTile((Vector3Int)currentCell, removedTile);
+            if (score == 244)
+            {
+                SceneManager.LoadScene("Scenes/GameWinScene");
+            }
         }
         if (wantedVelocity != Vector2Int.zero)
         {
@@ -97,14 +117,14 @@ public class MazeNavigationLogic : MonoBehaviour
         {
             if (pacmanVelocity == Vector2Int.right)
             {
-                pacmanPos.x -= displacement.x + 0.48f + MapWidth;
+                pacmanPos.x -= 2 + MapWidth;
             }
         }
         else if (currentCellType == LTeleporterTile)
         {
             if (pacmanVelocity == Vector2Int.left)
             {
-                pacmanPos.x += displacement.x + 0.48f + MapWidth;
+                pacmanPos.x += 2 + MapWidth;
             }
         }
         thePacman.transform.rotation = Quaternion.Euler(0, 0, 90 - Mathf.Atan2(pacmanVelocity.x, pacmanVelocity.y) * Mathf.Rad2Deg);
